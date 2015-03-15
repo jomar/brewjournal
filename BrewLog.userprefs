@@ -1,0 +1,61 @@
+﻿<Properties StartupItem="iOS-BrewLog/iOS-BrewJournal.csproj">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.IPhone.IPhoneSimulatorTarget.IPhone5s.8.1" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="BrewLog/Source/Pages/EditBrewPage.cs">
+    <Files>
+      <File FileName="BrewLog/Source/Pages/EditBrewPage.cs" Line="85" Column="28" />
+      <File FileName="iOS-BrewLog/Source/Renderers/InputTextRenderer.cs" Line="1" Column="1" />
+      <File FileName="BrewLog/Source/Pages/HomePage.cs" Line="1" Column="1" />
+      <File FileName="../../../TFS/Pocket/Pocket.Net/Trunk/Pocket-iOS/Source/Native/JSBridge.cs" Line="1" Column="1" />
+      <File FileName="BrewLog/Source/Widgets/ImageWidget.cs" Line="1" Column="1" />
+      <File FileName="iOS-BrewLog/Source/Renderers/ImageWidgetRenderer.cs" Line="1" Column="1" />
+      <File FileName="iOS-BrewLog/Source/Renderers/BrewCellImageRenderer.cs" Line="1" Column="1" />
+      <File FileName="../../../TFS/Pocket/Pocket.Net/Trunk/PocketCRM/Source/no/superoffice/pocket/model/Model.cs" Line="1" Column="1" />
+      <File FileName="BrewLog/App.cs" Line="1" Column="1" />
+      <File FileName="BrewLog/Source/Data/SQLite.cs" Line="1" Column="1" />
+      <File FileName="BrewLog/Source/Data/AppSettings.cs" Line="1" Column="1" />
+      <File FileName="iOS-BrewLog/Source/Application/Main.cs" Line="1" Column="1" />
+      <File FileName="iOS-BrewLog/Source/Application/AppDelegate.cs" Line="32" Column="1" />
+      <File FileName="BrewLog/Source/Data/Brew.cs" Line="1" Column="1" />
+      <File FileName="iOS-BrewLog/Source/Data/SQLite.cs" Line="1" Column="1" />
+      <File FileName="iOS-BrewLog/Source/Data/SQLiteConnectioniOS.cs" Line="1" Column="1" />
+      <File FileName="BrewLog/Source/Pages/ViewBrewPage.cs" Line="1" Column="1" />
+      <File FileName="BrewLog/Source/Pages/BrewPage.cs" Line="1" Column="1" />
+      <File FileName="BrewLog/Source/Widgets/BrewCell.cs" Line="1" Column="1" />
+      <File FileName="BrewLog/Source/Widgets/InputText.cs" Line="1" Column="1" />
+    </Files>
+    <Pads>
+      <Pad Id="ProjectPad">
+        <State expanded="True">
+          <Node name="BrewLog" expanded="True">
+            <Node name="Packages" expanded="True" />
+            <Node name="Resources" expanded="True">
+              <Node name="Icons" expanded="True" />
+            </Node>
+            <Node name="Source" expanded="True">
+              <Node name="Pages" expanded="True" />
+            </Node>
+          </Node>
+          <Node name="iOS-BrewJournal" expanded="True">
+            <Node name="Packages" expanded="True" selected="True" />
+            <Node name="Source" expanded="True">
+              <Node name="Application" expanded="True" />
+              <Node name="Data" expanded="True" />
+              <Node name="Renderers" expanded="True" />
+            </Node>
+          </Node>
+        </State>
+      </Pad>
+    </Pads>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore>
+      <Catchpoint exceptionName="System.Exception" includeSubclasses="True" />
+    </BreakpointStore>
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches>
+    <Watch file="../../../TFS/Pocket/Pocket.Net/Trunk/PocketCRM/Source/no/superoffice/pocket/gui/widgets/Footer.cs" line="332" offsetX="943" offsetY="4965" expression="Widgets.normalFont" liveUpdate="False" />
+    <Watch file="../../../TFS/Pocket/Pocket.Net/Trunk/PocketCRM/Source/no/superoffice/pocket/model/TaskModel.cs" line="465" offsetX="538" offsetY="6960" expression="System.Threading.Tasks.Task" liveUpdate="False" />
+    <Watch file="../../../TFS/Pocket/Pocket.Net/Trunk/PocketCRM/Source/no/superoffice/pocket/common/services/WebPanelRequest.cs" line="238" offsetX="1073" offsetY="3555" expression="jsonString" liveUpdate="False" />
+    <Watch file="../../../TFS/Pocket/Pocket.Net/Trunk/PocketCRM/Source/no/superoffice/pocket/common/services/RequestBase.cs" line="116" offsetX="560" offsetY="1725" expression="input" liveUpdate="False" />
+  </MonoDevelop.Ide.DebuggingService.PinnedWatches>
+</Properties>
