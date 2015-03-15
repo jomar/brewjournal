@@ -1,5 +1,4 @@
-# brewjournal
-Brew Journal App
+# Brew Journal App
 
 Main features
 - keep an easy to use, fast to update, tracker of homebrewers batches og beer
