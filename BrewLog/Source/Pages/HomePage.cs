@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 namespace BrewLog
 {
-	public class HomePage : ContentPage
+	public class HomePage : PageBase
 	{
 		protected BrewList _BrewList;
 
@@ -49,8 +49,10 @@ namespace BrewLog
 			Content = _BrewList;
 		}
 
-		protected void Refresh()
+		protected override void Refresh()
 		{
+			base.Refresh();
+
 			var brews = GetBrews();
 			if (brews != null && brews.Count > 0)
 			{
@@ -96,13 +98,6 @@ namespace BrewLog
 			Page page = new EditBrewPage(0);
 			Navigation.PushAsync(page);
 
-		}
-
-		protected override void OnAppearing ()
-		{
-			base.OnAppearing ();
-
-			Refresh();
 		}
 
 		protected void EditBrew(int id)

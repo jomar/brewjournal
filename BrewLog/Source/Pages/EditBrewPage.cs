@@ -15,12 +15,6 @@ namespace BrewLog
 		{
 			Title = "Add new brew";
 
-			var brewDateLabel = new Label()
-			{
-				VerticalOptions = LayoutOptions.Center,
-				Text = "Brew date:"
-			};
-
 			_BrewDate = new DatePicker()
 			{
 				Format = "D"

@@ -19,7 +19,10 @@ namespace BrewLog
 			{
 				using (var db = global::Brew.SQLite.Connection.Invoke())
 				{
-					db.Insert(brew);
+					if (brew.Id != 0)
+						db.Update(brew);
+					else
+						db.Insert(brew);
 					db.Commit();
 					db.Close();
 				}
@@ -45,15 +48,21 @@ namespace BrewLog
 			{
 				if (_Brew == null)
 				{
-					using(var db = global::Brew.SQLite.Connection.Invoke())
+					if (_Id != 0)
 					{
-						var brew = db.Table<Brew>().Where(v => v.Id == _Id);
-						if (brew != null && brew.Count() > 0)
-							_Brew = brew.First();
-						else
-							_Brew = new Brew() { Id = _Id };
+						using(var db = global::Brew.SQLite.Connection.Invoke())
+						{
+							var brew = db.Table<Brew>().Where(v => v.Id == _Id);
+							if (brew != null && brew.Count() > 0)
+								_Brew = brew.First();
+							else
+								_Brew = new Brew() { Id = _Id };
+						}
 					}
+					else
+						_Brew = new Brew();
 				}
+
 				return _Brew;
 			}
 		}

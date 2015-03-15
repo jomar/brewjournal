@@ -8,7 +8,6 @@ namespace BrewLog
 	{
 		public ViewBrewPage (int brewId) : base(brewId)
 		{
-			Title = Brew.Name;
 			NavigationPage.SetBackButtonTitle(this, "Back");
 
 			var edit = new ToolbarItem("Edit", null, () => Edit() );
@@ -22,12 +21,8 @@ namespace BrewLog
 			});
 			AddWidgetWithLabel("Events:", addEventButton);
 
-			PopulateEvents(brewId);
-
 			var addPhotosButton = new AddButton();
 			AddWidgetWithLabel("Photos:", addPhotosButton);
-
-			PopulateImages(brewId);
 
 			var deleteButton = new Button()
 			{
@@ -45,7 +40,17 @@ namespace BrewLog
 				}
 			};
 			AddWidget(deleteButton);
+		}
 
+		protected override void Refresh ()
+		{
+			base.Refresh ();
+
+			_Brew = null;
+
+			Title = Brew.Name;
+			PopulateEvents(_Id);
+			PopulateImages(_Id);
 		}
 
 		protected void PopulateEvents(int brewId)
@@ -65,9 +70,12 @@ namespace BrewLog
 
 		protected void AddEvent(BrewEvent brewEvent)
 		{
+			// todo: clear previous content
+			// todo: make a placeholder for this to get proper positioning
+
 			var eventRow = new Label()
 			{
-				Text = " - " + brewEvent.EventDate.ToString() + " " +
+				Text = " * " + brewEvent.EventDate.ToString("g") + " " +
 					brewEvent.Name + " " +
 					brewEvent.Description
 			};

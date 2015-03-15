@@ -42,6 +42,17 @@ namespace BrewLog
 				Children = { label, widget }
 			});
 		}
+
+		protected override void OnAppearing ()
+		{
+			base.OnAppearing ();
+
+			Refresh();
+		}
+
+		protected virtual void Refresh()
+		{
+		}
 	}
 }
 

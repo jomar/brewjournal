@@ -7,12 +7,22 @@ namespace BrewLog
 	{
 		protected int _Id;
 		protected InputText _NameInput;
+		protected DatePicker _EventDate;
 		protected Brew _Brew;
+		protected BrewEvent _BrewEvent;
+
 		public EditEventPage (int eventId, Brew brew)
 		{
 			_Id = eventId;
 			_Brew = brew;
 			Title = eventId > 0 ? "Edit event" : "Add event";
+
+			_EventDate = new DatePicker()
+			{
+				Format = "D"
+			};
+
+			AddWidgetWithLabel("Event date:", _EventDate);
 
 			_NameInput = new InputText()
 			{
@@ -34,6 +44,7 @@ namespace BrewLog
 				newEvent.Id = _Id;
 				newEvent.Name = _NameInput.Text;
 				newEvent.BrewId = _Brew.Id;
+				newEvent.EventDate = _EventDate.Date;
 
 				if (SaveEvent(newEvent))
 				{
@@ -41,6 +52,8 @@ namespace BrewLog
 				}
 			};
 			AddWidget(saveButton);
+
+			Refresh();
 		}
 
 		protected bool VerifyValues(BrewEvent brewEvent)
@@ -69,6 +82,46 @@ namespace BrewLog
 			else
 				return false;
 		}
+
+		protected BrewEvent BrewEvent
+		{
+			get
+			{
+				if (_BrewEvent == null)
+				{
+					if (_Id != 0)
+					{
+						using(var db = global::Brew.SQLite.Connection.Invoke())
+						{
+							var brewEvent = db.Table<BrewEvent>().Where(v => v.Id == _Id);
+							if (brewEvent != null && brewEvent.Count() > 0)
+								_BrewEvent = brewEvent.First();
+							else
+								_BrewEvent = new BrewEvent() { Id = _Id };
+						}
+					}
+					else
+						_BrewEvent = new BrewEvent();
+				}
+
+				return _BrewEvent;
+			}
+		}
+
+		protected void Refresh()
+		{
+			if (_Id > 0)
+			{
+				_NameInput.Text = BrewEvent.Name;
+				_EventDate.Date = BrewEvent.EventDate;
+			}
+			else
+			{
+				// default values
+				_EventDate.Date = DateTime.Now;
+			}
+		}
+
 	}
 }
 
