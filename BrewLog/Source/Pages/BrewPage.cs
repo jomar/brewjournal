@@ -7,10 +7,31 @@ namespace BrewLog
 	{
 		protected int _Id;
 		protected Brew _Brew;
+		protected StackLayout _Layout;
 
 		public BrewPage (int id)
 		{
 			_Id = id;
+
+			_Layout = new StackLayout()
+            {
+				HorizontalOptions = LayoutOptions.FillAndExpand,
+                Orientation = StackOrientation.Vertical,
+               	Padding = 5.0f,
+			};
+
+			Content = _Layout;
+		}
+
+		protected View AddWidget(View widget)
+		{
+			Layout.Children.Add(widget);
+			return widget;
+		}
+
+		protected StackLayout Layout
+		{
+			get { return _Layout; }
 		}
 
 		protected bool SaveBrew(Brew brew)

@@ -14,7 +14,7 @@ namespace BrewLog
 
 		public BrewCell ()
 		{
-			_CellHeight = 100.0f;
+			_CellHeight = 90.0f;
 			_LeftMargin = 5.0f;
 			_RightMargin = 5.0f;
 			_TopMargin = 5.0f;

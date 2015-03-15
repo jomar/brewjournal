@@ -12,6 +12,34 @@ namespace BrewLog
 
 			var edit = new ToolbarItem("Edit", null, () => Edit() );
 			ToolbarItems.Add(edit);
+
+
+
+			var deleteButton = new Button()
+			{
+				Text = "Delete",
+				FontAttributes = FontAttributes.Bold,
+				TextColor = Color.Yellow,
+				BackgroundColor = Color.Red
+			};
+
+			deleteButton.Clicked += (object sender, EventArgs e) => 
+			{
+				if (DeleteBrew())
+				{
+					Navigation.PopAsync();
+				}
+			};
+			AddWidget(deleteButton);
+
+		}
+
+		protected bool DeleteBrew()
+		{
+			using(var db = global::Brew.SQLite.Connection.Invoke())
+			{
+				return db.Delete<Brew>(_Id) != 0;
+			}
 		}
 
 		protected void Edit()

@@ -15,25 +15,7 @@ namespace BrewLog
 		{
 			Title = "Add new brew";
 
-			var image = new ImageWidget
-			{
-				HorizontalOptions = LayoutOptions.Start,
-				WidthRequest = 150,
-				HeightRequest = 150,
-				Placeholder = "Tap to set image"
-			};
-
-			_NameInput = new InputText()
-			{
-				Placeholder = "Name"
-			};
-
-			_StyleInput = new InputText()
-			{
-				Placeholder = "Style"
-			};
-
-			var _BrewDateLabel = new Label()
+			var brewDateLabel = new Label()
 			{
 				VerticalOptions = LayoutOptions.Center,
 				Text = "Brew date:"
@@ -44,13 +26,25 @@ namespace BrewLog
 				Format = "D"
 			};
 
-			var _BrewDateLine = new StackLayout()
+			AddWidget(new StackLayout()
 			{
 				HorizontalOptions = LayoutOptions.FillAndExpand,
 				VerticalOptions = LayoutOptions.Center,
                 Orientation = StackOrientation.Horizontal,
-				Children = { _BrewDateLabel, _BrewDate }
+				Children = { brewDateLabel, _BrewDate }
+			});
+
+			_NameInput = new InputText()
+			{
+				Placeholder = "Name"
 			};
+			AddWidget(_NameInput);
+
+			_StyleInput = new InputText()
+			{
+				Placeholder = "Style"
+			};
+			AddWidget(_StyleInput);
 
 			_NotesInput = new MultilineInputText()
 			{
@@ -65,6 +59,7 @@ namespace BrewLog
 				TextColor = Color.White,
 				BackgroundColor = Color.Red
 			};
+
 			saveButton.Clicked += (object sender, EventArgs e) => 
 			{
 				Brew brew = new Brew();
@@ -79,21 +74,25 @@ namespace BrewLog
 					Navigation.PopAsync();
 				}
 			};
+			AddWidget(saveButton);
 
 			var addProperty = new AddButton();
 			addProperty.Clicked = () => AddProperty("test");
 
-			var layout = new StackLayout()
-             {
-				HorizontalOptions = LayoutOptions.FillAndExpand,
-                Orientation = StackOrientation.Vertical,
-				Children = { image, _NameInput, _StyleInput, addProperty, _BrewDateLine, _NotesInput, saveButton }
-             };
-			layout.Padding = 5.0f;
-
-			Content = layout;
-
 			Refresh();
+		}
+
+		protected void AddImage(ImageSource source)
+		{
+			var image = new ImageWidget
+			{
+				HorizontalOptions = LayoutOptions.Start,
+				WidthRequest = 150,
+				HeightRequest = 150,
+				Source = source,
+				Placeholder = "Tap to set image"
+			};
+
 		}
 
 		protected void AddProperty(string name)
@@ -103,10 +102,18 @@ namespace BrewLog
 
 		protected void Refresh()
 		{
-			_NameInput.Text = Brew.Name;
-			_StyleInput.Text = Brew.Style;
-			_NotesInput.Text = Brew.Notes;
-			_BrewDate.Date = Brew.BrewDate;
+			if (_Id > 0)
+			{
+				_NameInput.Text = Brew.Name;
+				_StyleInput.Text = Brew.Style;
+				_NotesInput.Text = Brew.Notes;
+				_BrewDate.Date = Brew.BrewDate;
+			}
+			else
+			{
+				// default values
+				_BrewDate.Date = DateTime.Now;
+			}
 		}
 
 	}
