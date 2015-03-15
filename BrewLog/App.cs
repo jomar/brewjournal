@@ -7,7 +7,12 @@ namespace BrewLog
 	{
 		public static Page GetMainPage ()
 		{	
-			global::Brew.SQLite.Connection.Invoke().CreateTable<Brew>();
+			using (var db = global::Brew.SQLite.Connection.Invoke())
+			{
+				db.CreateTable<Brew>();
+				db.CreateTable<BrewEvent>();
+				db.CreateTable<BrewImage>();
+			}
 
 			var navPage = new NavigationPage(new HomePage());
 			return navPage;

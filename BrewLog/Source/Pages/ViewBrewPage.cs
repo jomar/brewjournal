@@ -1,5 +1,6 @@
 ﻿using System;
 using Xamarin.Forms;
+using System.Collections.Generic;
 
 namespace BrewLog
 {
@@ -13,7 +14,20 @@ namespace BrewLog
 			var edit = new ToolbarItem("Edit", null, () => Edit() );
 			ToolbarItems.Add(edit);
 
+			var addEventButton = new AddButton();
+			addEventButton.Clicked += new Action(() =>
+			{
+				EditEventPage eventPage = new EditEventPage(0, Brew);
+				Navigation.PushAsync(eventPage);
+			});
+			AddWidgetWithLabel("Events:", addEventButton);
 
+			PopulateEvents(brewId);
+
+			var addPhotosButton = new AddButton();
+			AddWidgetWithLabel("Photos:", addPhotosButton);
+
+			PopulateImages(brewId);
 
 			var deleteButton = new Button()
 			{
@@ -32,6 +46,37 @@ namespace BrewLog
 			};
 			AddWidget(deleteButton);
 
+		}
+
+		protected void PopulateEvents(int brewId)
+		{
+			List<BrewEvent> events = new List<BrewEvent>();
+
+			using (var connection = global::Brew.SQLite.Connection.Invoke())
+			{
+				var allEventsQuery = connection.Table<BrewEvent>().Where(e => e.BrewId == brewId);
+				foreach(var e in allEventsQuery)
+				{
+					AddEvent(e);
+				}
+				connection.Close();
+			}
+		}
+
+		protected void AddEvent(BrewEvent brewEvent)
+		{
+			var eventRow = new Label()
+			{
+				Text = " - " + brewEvent.EventDate.ToString() + " " +
+					brewEvent.Name + " " +
+					brewEvent.Description
+			};
+			AddWidget(eventRow);
+		}
+
+		protected void PopulateImages(int brewId)
+		{
+			// todo get all images and add them nicely to layout
 		}
 
 		protected bool DeleteBrew()

@@ -26,13 +26,7 @@ namespace BrewLog
 				Format = "D"
 			};
 
-			AddWidget(new StackLayout()
-			{
-				HorizontalOptions = LayoutOptions.FillAndExpand,
-				VerticalOptions = LayoutOptions.Center,
-                Orientation = StackOrientation.Horizontal,
-				Children = { brewDateLabel, _BrewDate }
-			});
+			AddWidgetWithLabel("Brew date:", _BrewDate);
 
 			_NameInput = new InputText()
 			{
